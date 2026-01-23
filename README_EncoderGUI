@@ -1,0 +1,46 @@
+# Encoder GUI README
+
+## Overview
+This project implements a MATLAB GUI that visualises wheel encoder data to estimate distance travelled and robot direction by comparing the left and right wheel's distance traveled
+The goal was to make raw encoder data easier to understand
+
+## Why
+- Raw encoder counts dont give much insight on their own as to what the robot is actually doing
+- Using the encoder counts to calculate the distance and direction allows you to visualise what the robot is actually doing and record useful data about its movements
+
+## Hardware
+- ESP32 microcontroller
+- 1 encoder connected to each rear wheel
+
+## What Is The Encoder Counting?
+- The Encoder counts how many pulses/clicks the wheel does
+- Each pulse moves the car forward by around 2mm
+- As the wheel rotates the count increases, each slight rotation is a pulse
+
+## Encoder Count to Distance?
+- To convert the counts to a distance in meteres in my code I multiplied the distance for one pulse 2mm by 0.001 to get to metres
+- Then I multiply this value by the encoder count to get the total distance travelled for that wheel
+
+## Direction Estimation
+- To turn right the left wheel must move more than the right wheel and vice versa
+- Using this knowledge i created a direction threshold variable of 10cm
+- This variable indicated the minimum distance between the 2 wheels that would indicate a rotating motion is taking place
+- If that direction threshold was reached my robot is turning and id set the direction in the code
+
+## GUI Features
+- Real time display of wheel distance travelled
+- direction gauge visualisation
+- Live plots of encoder data
+
+## Limitations
+- Relies only on encoder data so direction angle is innaccurate
+- Encoder count must be reset each time code runs
+
+## What I learned
+- First time using MATLAB
+- Improved understanding of wheel encoders
+
+## Improvements to make
+- More accurate distance calculation
+- Include servo angle data in gui instead of estimating using encoder
+- Calculate speed
