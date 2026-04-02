@@ -1,5 +1,5 @@
 # autonomous-robot-car(Ongoing)
-Ongoing robot car project using C and esp32 
+robot car project using C and esp32 
 
 ## What it does
 - navigates a maze using the default left rule
@@ -8,14 +8,19 @@ Ongoing robot car project using C and esp32
 - Reads sensor data to detect obstacles
 - Uses i2c communication between 2 esp32 microcontrollers
 - Displays a value on a seven segment depending on battery charge using logic gates
+- Uses a colour sensor array to detect a black line
+- Uses PID control to follow a black line
+- Uses a sensor to detect colours
 
 ## Tech used
 - C
-- 2 ESP32 Microcontrollers
+- ESP32 Microcontrollers
 - HS204 Ultrasonic Sensor
 - Motors
 - Seven-segment display
 - Liquid Crystal Display
+- Photodiode & IR LED 
+- TCS3200 Colour Sensor
 
 ## What I learned
 - Debugging hardware and software together
@@ -25,9 +30,11 @@ Ongoing robot car project using C and esp32
 - Wireless ESP32 communication
 - Liquid Crystal Display Interfacing
 - Keypad Interfacing
+- Sensor Callibration
+- Sensor Interfacing
 
 ## Improvements planned
 - Slow robot down in maze (completed)
 - More organised code (completed)
-- Resolder header :| (completed)
+- Resolder header (completed)
 - Tape back of keypad connectivity on Remote PCB to avoid mis communication from keypad to ESP32 
