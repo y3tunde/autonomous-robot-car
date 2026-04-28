@@ -45,7 +45,7 @@ int flag = 0;
 bool isTurning = false;
 int turnDelay = 0;
 
-float getDistance(){
+float readSensors(){
   unsigned int Med = sonar.ping_median(PING_COUNT);  // filtered output
   float distance = Med / 58.0;
   float Unfiltered= sonar.ping_cm();
@@ -56,8 +56,8 @@ float getDistance(){
 int Move(){
 
   if (getDistance() > 10){
-    x = 255;
-    y = 255;
+    x = 170;//updated speed value to avoid crashing
+    y = 170;
     go = 1;
   }else{
     go = 0;
@@ -70,16 +70,16 @@ int Rotate(int flag){
     y = 0;
     z = 0;
     flag = 1;
-    x = -255;
-    y = 255;
+    x = -170;
+    y = 170;
 
 
   }else if (flag == 1){
     x = 0;
     y = 0;
     z = 180;
-    x = 255;
-    y = -255;
+    x = 170;
+    y = -170;
     flag = 0;
   }
   return flag;
@@ -91,7 +91,7 @@ void loop()
   // two 16-bit integer values are requested from the slave
   int16_t a = 0;
   int16_t b = 0;
-  uint8_t bytesReceived = Wire.requestFrom(I2C_SLAVE_ADDR, 4);  // 4 indicates the number of bytes that are expected
+  uint8_t bytesReceived = Wire.requestFrom(I2C_SLAVE_ADDR, 6);  // 4 indicates the number of bytes that are expected
   uint8_t a16_9 = Wire.read();  // receive bits 16 to 9 of a (one byte)
   uint8_t a8_1 = Wire.read();   // receive bits 8 to 1 of a (one byte)
   uint8_t b16_9 = Wire.read();   // receive bits 16 to 9 of b (one byte)
@@ -99,13 +99,6 @@ void loop()
 
   a = (a16_9 << 8) | a8_1; // combine the two bytes into a 16 bit number
   b = (b16_9 << 8) | b8_1; // combine the two bytes into a 16 bit number
-
-  //Serial.print(a);
-  //Serial.print("\t");
-  //Serial.println(b);
-
-  //SENSOR DISTANCE
-  //delay(1000);
 
   //Serial.println(dista);
   
